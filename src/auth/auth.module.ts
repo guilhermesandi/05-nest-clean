@@ -10,9 +10,11 @@ import { Env } from 'src/env'
     JwtModule.registerAsync({
       inject: [ConfigService],
       useFactory(config: ConfigService<Env, true>) {
-        console.log(config.get('JWT_SECRET', { infer: true }))
+        const secret = config.get('JWT_SECRET', { infer: true })
 
-        return {}
+        return {
+          secret,
+        }
       },
     }),
   ],
